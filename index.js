@@ -21,4 +21,19 @@ app.post('/requests', async (req,res) => {
     const lastName = req.body.lastName;
     const email = req.body.email;
     const message = req.body.message
-})
+
+    console.log("testing post route");
+
+    try{
+        const x = await db.collection("requests").insertOne(userInfo);
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+    console.log(userInfo);
+    res.json("evaluated successfully")
+});
+
+const port = process.env.PORT || 3001
+app.listen(port, () => console.log(`Server is running on port ${port}...`));
